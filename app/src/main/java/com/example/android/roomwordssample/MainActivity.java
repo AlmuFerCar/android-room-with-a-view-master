@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_CONTACT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Contact contact = new Contact(data.getStringExtra(NewContactActivity.EXTRA_REPLY));
+            Contact contact = (Contact) data.getSerializableExtra(NewContactActivity.EXTRA_REPLY);
             mContactViewModel.insert(contact);
         } else {
             Toast.makeText(

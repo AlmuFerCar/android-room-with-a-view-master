@@ -33,8 +33,8 @@ public class NewContactActivity extends AppCompatActivity {
 
     private EditText mEditNameView;
     private EditText mEditPhoneView;
-    public Contact contacto;
-    public static String CONTACTO;
+//    public Contact contacto;
+//    public static String CONTACTO;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class NewContactActivity extends AppCompatActivity {
                 String phone = mEditPhoneView.getText().toString();
                 Contact c = new Contact (name, phone);
                 Bundle b = new Bundle();
-                b.putSerializable(CONTACTO, contacto);
+                b.putSerializable(EXTRA_REPLY, c);
                 replyIntent.putExtras(b);
                 setResult(RESULT_OK, replyIntent);
             }
