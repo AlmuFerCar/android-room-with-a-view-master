@@ -18,6 +18,7 @@ package com.example.android.roomwordssample;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, NewContactActivity.class);
             startActivityForResult(intent, NEW_CONTACT_ACTIVITY_REQUEST_CODE);
         });
+
+//        adaptadorAgendas.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Log.i("Mi App", "Pulsado el elemento"+recyclerView.getChildAdapterPosition(v));
+////                adaptadorAgendas.getContacto(recyclerView.getChildAdapterPosition(v));
+//                contacto= adaptadorAgendas.getContacto(recyclerView.getChildAdapterPosition(v));
+//                paginaSiguiente();
+//            }
+//        });
     }
 
    public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -75,4 +86,13 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
     }
+
+//    public void paginaSiguiente()
+//    {
+//        Bundle b=new Bundle();
+//        b.putSerializable(CONTACTO, contacto);
+//        Intent intent=new Intent(this, AgendaContactoActivity.class);
+//        intent.putExtras(b);
+//        startActivity(intent);
+//    }
 }
