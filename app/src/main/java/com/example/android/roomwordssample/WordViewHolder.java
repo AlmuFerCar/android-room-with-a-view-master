@@ -38,9 +38,9 @@ class WordViewHolder extends RecyclerView.ViewHolder {
         phoneItemView.setText(phone);
     }
 
-    static WordViewHolder create(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+    static WordViewHolder create(View view) {
+        /*View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recyclerview_item, parent, false);*/
         return new WordViewHolder(view);
     }
 }

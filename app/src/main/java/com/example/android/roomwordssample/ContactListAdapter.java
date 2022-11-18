@@ -16,6 +16,8 @@ package com.example.android.roomwordssample;
  * limitations under the License.
  */
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -23,15 +25,23 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 
-public class ContactListAdapter extends ListAdapter<Contact, WordViewHolder> {
+public class ContactListAdapter extends ListAdapter<Contact, WordViewHolder> implements View.OnClickListener{
 
+    private View.OnClickListener listener;
     public ContactListAdapter(@NonNull DiffUtil.ItemCallback<Contact> diffCallback) {
         super(diffCallback);
     }
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return WordViewHolder.create(parent);
+        //View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_component, viewGroup, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recyclerview_item, parent, false);
+                 view.setOnClickListener(this);
+//        itemView.setOnLongClickListener(this);
+//        AgendasViewHolder tvh =new AgendasViewHolder(itemView);
+//        return tvh;
+        return WordViewHolder.create(view);
     }
 
     @Override
@@ -39,6 +49,8 @@ public class ContactListAdapter extends ListAdapter<Contact, WordViewHolder> {
         Contact current = getItem(position);
         holder.bind(current.getmName(), current.getmPhone());
     }
+
+
 
     static class WordDiff extends DiffUtil.ItemCallback<Contact> {
 
@@ -52,4 +64,22 @@ public class ContactListAdapter extends ListAdapter<Contact, WordViewHolder> {
             return oldItem.getmName().equals(newItem.getmName());
         }
     }
+
+    public void setOnClickListener(View.OnClickListener listener)
+    {
+        this.listener=listener;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        if(listener !=null){
+            listener.onClick(view);}
+    }
+
+    public Contact getContacto(int pos)
+    {
+       return getItem(pos);
+    }
+
 }

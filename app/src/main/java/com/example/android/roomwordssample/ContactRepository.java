@@ -55,9 +55,9 @@ class ContactRepository {
             mContactDao.insert(contact);
         });
     }
-    /*void delete (Contact word) {
-        WordRoomDatabase.databaseWriteExecutor.execute(() -> {
-            mWordDao.insert(word);
+    void delete (Contact contact) {
+        ContactRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mContactDao.insert(contact);
         });
-    }*/
+    }
 }
