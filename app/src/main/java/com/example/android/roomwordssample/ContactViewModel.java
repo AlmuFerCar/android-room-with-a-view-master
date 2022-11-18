@@ -53,6 +53,6 @@ public class ContactViewModel extends AndroidViewModel {
     }
     void delete(Contact contact)
     {
-        mRepository.insert(contact);
+        mRepository.delete(contact);
     }
 }
