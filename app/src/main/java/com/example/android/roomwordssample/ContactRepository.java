@@ -57,7 +57,7 @@ class ContactRepository {
     }
     void delete (Contact contact) {
         ContactRoomDatabase.databaseWriteExecutor.execute(() -> {
-            mContactDao.insert(contact);
+            mContactDao.delete(contact);
         });
     }
 }

@@ -35,8 +35,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
 
     public static final int NEW_CONTACT_ACTIVITY_REQUEST_CODE = 1;
-
-    private ContactViewModel mContactViewModel;
+    public static final int DELETE_CONTACT_ACTIVITY_REQUEST_CODE = 2;
+    public static ContactViewModel mContactViewModel;
     public Contact contacto;
     public static String CONTACTO;
     private View.OnClickListener listener;
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         final ContactListAdapter adapter = new ContactListAdapter(new ContactListAdapter.WordDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         // Get a new or existing ViewModel from the ViewModelProvider.
         mContactViewModel = new ViewModelProvider(this).get(ContactViewModel.class);
@@ -88,8 +89,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == NEW_CONTACT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Contact contact = (Contact) data.getSerializableExtra(EXTRA_REPLY);
             mContactViewModel.insert(contact);
-            mContactViewModel.delete(contact);
-        } else {
+            //mContactViewModel.delete(contact);
+        }
+        else if(resultCode == -2)
+       {
+           Contact contact = (Contact) data.getSerializableExtra(EXTRA_REPLY);
+           mContactViewModel.delete(contact);
+       }
+        else {
             Toast.makeText(
                     getApplicationContext(),
                     R.string.empty_not_saved,
